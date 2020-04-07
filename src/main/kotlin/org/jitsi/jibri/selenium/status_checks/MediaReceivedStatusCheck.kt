@@ -2,6 +2,8 @@ package org.jitsi.jibri.selenium.status_checks
 
 import org.jitsi.jibri.selenium.SeleniumEvent
 import org.jitsi.jibri.selenium.pageobjects.CallPage
+import org.jitsi.jibri.selenium.status_checks.StateTransitionTimeTracker
+
 import java.time.Clock
 import java.time.Duration
 import java.util.logging.Logger

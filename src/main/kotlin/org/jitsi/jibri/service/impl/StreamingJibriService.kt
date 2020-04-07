@@ -82,8 +82,8 @@ class StreamingJibriService(
             streamingMaxBitrate = STREAMING_MAX_BITRATE,
             streamingBufSize = 2 * STREAMING_MAX_BITRATE
         )
-		logger.info("instantiating StreamSink object with publish URL ${sink.url}");
-		
+        logger.info("instantiating StreamSink object with publish URL ${sink.url}");
+
         registerSubComponent(JibriSelenium.COMPONENT_ID, jibriSelenium)
         registerSubComponent(FfmpegCapturer.COMPONENT_ID, capturer)
     }

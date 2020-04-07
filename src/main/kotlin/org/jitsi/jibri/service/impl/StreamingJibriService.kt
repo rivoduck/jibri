@@ -19,6 +19,7 @@ package org.jitsi.jibri.service.impl
 
 import org.jitsi.xmpp.extensions.jibri.JibriIq
 import org.jitsi.jibri.capture.ffmpeg.FfmpegCapturer
+import org.jitsi.jibri.config.StreamTargetConfig
 import org.jitsi.jibri.config.XmppCredentials
 import org.jitsi.jibri.selenium.CallParams
 import org.jitsi.jibri.selenium.JibriSelenium
@@ -67,7 +68,8 @@ data class StreamingParams(
  * to a url
  */
 class StreamingJibriService(
-    private val streamingParams: StreamingParams
+    private val streamingParams: StreamingParams,
+	private val streamTargetConfig: StreamTargetConfig
 ) : StatefulJibriService("Streaming") {
     private val capturer = FfmpegCapturer()
     private val sink: Sink
@@ -75,11 +77,13 @@ class StreamingJibriService(
 
     init {
         sink = StreamSink(
-            url = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}",
+            //url = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}",
+			url = streamTargetConfig.rtmpIngestionBaseUrl + streamTargetConfig.rtmp_ingestion_endpoint + "/" + streamingParams.youTubeStreamKey,
             streamingMaxBitrate = STREAMING_MAX_BITRATE,
             streamingBufSize = 2 * STREAMING_MAX_BITRATE
         )
-
+		logger.info("instantiating StreamSink object with publish URL ${url}");
+		
         registerSubComponent(JibriSelenium.COMPONENT_ID, jibriSelenium)
         registerSubComponent(FfmpegCapturer.COMPONENT_ID, capturer)
     }

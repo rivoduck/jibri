@@ -93,6 +93,13 @@ data class XmppEnvironmentConfig(
     val trustAllXmppCerts: Boolean = true
 )
 
+data class StreamTargetConfig(
+    @JsonProperty("rtmp_ingestion_base_url")
+    val rtmpIngestionBaseUrl: String = "rtmp://a.rtmp.youtube.com",
+    @JsonProperty("rtmp_ingestion_endpoint")
+    val rtmpIngestionEndpoint: String = "/live2",
+)
+
 data class JibriConfig(
     @JsonProperty("recording_directory")
     val recordingDirectory: String,
@@ -114,5 +121,9 @@ data class JibriConfig(
     @JsonProperty("finalize_recording_script_path")
     val finalizeRecordingScriptPath: String,
     @JsonProperty("xmpp_environments")
-    val xmppEnvironments: List<XmppEnvironmentConfig>
+    val xmppEnvironments: List<XmppEnvironmentConfig>,
+	
+    @JsonProperty("stream_target_config")
+    val streamTargetConfig: StreamTargetConfig
+	
 )

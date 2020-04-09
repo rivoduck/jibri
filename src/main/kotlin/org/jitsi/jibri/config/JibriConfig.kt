@@ -124,8 +124,8 @@ data class JibriConfig(
     val finalizeRecordingScriptPath: String,
     @JsonProperty("xmpp_environments")
     val xmppEnvironments: List<XmppEnvironmentConfig>,
-	
+
     @JsonProperty("stream_target_configs")
     val streamTargetConfigs: List<StreamTargetConfig>
-	
+
 )

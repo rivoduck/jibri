@@ -76,25 +76,25 @@ class StreamingJibriService(
     private val jibriSelenium = JibriSelenium()
 
     init {
-		var rtmpIngestionBaseUrl = "";
-		var rtmpIngestionEndpoint = "";
-		var defaultRtmpIngestionBaseUrl = "";
-		var defaultRtmpIngestionEndpoint = "";
-		for (config in streamTargetConfigs) {
-			if ( config.callName == streamingParams.callParams.callUrlInfo.callName ) {
-				rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
-				rtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
-			}
-			if ( config.callName == "default") {
-				defaultRtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
-				defaultRtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
-			}
-		}
-		if (rtmpIngestionBaseUrl == "" && rtmpIngestionEndpoint == "") {
-			rtmpIngestionBaseUrl = defaultRtmpIngestionBaseUrl;
-			rtmpIngestionEndpoint = defaultRtmpIngestionEndpoint;
-		}
-		
+        var rtmpIngestionBaseUrl = "";
+        var rtmpIngestionEndpoint = "";
+        var defaultRtmpIngestionBaseUrl = "";
+        var defaultRtmpIngestionEndpoint = "";
+        for (config in streamTargetConfigs) {
+            if ( config.callName == streamingParams.callParams.callUrlInfo.callName ) {
+                rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
+                rtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
+            }
+            if ( config.callName == "default") {
+                defaultRtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
+                defaultRtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
+            }
+        }
+        if (rtmpIngestionBaseUrl == "" && rtmpIngestionEndpoint == "") {
+            rtmpIngestionBaseUrl = defaultRtmpIngestionBaseUrl;
+            rtmpIngestionEndpoint = defaultRtmpIngestionEndpoint;
+        }
+
         sink = StreamSink(
             //url = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}",
             url = "${rtmpIngestionBaseUrl}${rtmpIngestionEndpoint}/${streamingParams.youTubeStreamKey}",

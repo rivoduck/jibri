@@ -76,11 +76,11 @@ class StreamingJibriService(
     private val jibriSelenium = JibriSelenium()
 
     init {
-		callName = streamingParams.callParams.callName;
-		rtmpIngestionBaseUrl = "";
-		rtmpIngestionEndpoint = "";
-		defaultRtmpIngestionBaseUrl = "";
-		defaultRtmpIngestionEndpoint = "";
+		val callName = streamingParams.callParams.callName;
+		val rtmpIngestionBaseUrl = "";
+		val rtmpIngestionEndpoint = "";
+		val defaultRtmpIngestionBaseUrl = "";
+		val defaultRtmpIngestionEndpoint = "";
 		for (config in xmppConfigs) {
 			if ( config.callName == callname ) {
 				rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;

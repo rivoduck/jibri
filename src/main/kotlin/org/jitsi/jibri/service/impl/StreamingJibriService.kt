@@ -69,17 +69,17 @@ data class StreamingParams(
  */
 class StreamingJibriService(
     private val streamingParams: StreamingParams,
-	private val streamTargetConfigs: List<StreamTargetConfig>
+    private val streamTargetConfigs: List<StreamTargetConfig>
 ) : StatefulJibriService("Streaming") {
     private val capturer = FfmpegCapturer()
     private val sink: Sink
     private val jibriSelenium = JibriSelenium()
 
     init {
-        var rtmpIngestionBaseUrl = "";
-        var rtmpIngestionEndpoint = "";
-        var defaultRtmpIngestionBaseUrl = "";
-        var defaultRtmpIngestionEndpoint = "";
+        var rtmpIngestionBaseUrl = ""
+        var rtmpIngestionEndpoint = ""
+        var defaultRtmpIngestionBaseUrl = ""
+        var defaultRtmpIngestionEndpoint = ""
         for (config in streamTargetConfigs) {
             if ( config.callName == streamingParams.callParams.callUrlInfo.callName ) {
                 rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;

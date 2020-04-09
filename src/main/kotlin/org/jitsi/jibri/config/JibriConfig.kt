@@ -125,7 +125,7 @@ data class JibriConfig(
     @JsonProperty("xmpp_environments")
     val xmppEnvironments: List<XmppEnvironmentConfig>,
 	
-    @JsonProperty("stream_target_config")
+    @JsonProperty("stream_target_configs")
     val streamTargetConfigs: List<StreamTargetConfig>
 	
 )

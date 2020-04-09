@@ -158,7 +158,7 @@ class JibriManager(
     ) {
         logger.info("Starting a stream with params: $serviceParams $streamingParams")
         throwIfBusy()
-        val service = StreamingJibriService(streamingParams, config.streamTargetConfig)
+        val service = StreamingJibriService(streamingParams, config.streamTargetConfigs)
         statsDClient?.incrementCounter(ASPECT_START, TAG_SERVICE_LIVE_STREAM)
         startService(service, serviceParams, environmentContext, serviceStatusHandler)
     }

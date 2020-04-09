@@ -69,16 +69,36 @@ data class StreamingParams(
  */
 class StreamingJibriService(
     private val streamingParams: StreamingParams,
-	private val streamTargetConfig: StreamTargetConfig
+	private val streamTargetConfigs: List<StreamTargetConfig>
 ) : StatefulJibriService("Streaming") {
     private val capturer = FfmpegCapturer()
     private val sink: Sink
     private val jibriSelenium = JibriSelenium()
 
     init {
+		callName = streamingParams.callParams.callName;
+		rtmpIngestionBaseUrl = "";
+		rtmpIngestionEndpoint = "";
+		defaultRtmpIngestionBaseUrl = "";
+		defaultRtmpIngestionEndpoint = "";
+		for (config in xmppConfigs) {
+			if ( config.callName == callname ) {
+				rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
+				rtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
+			}
+			if ( config.callName == "default") {
+				defaultRtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
+				defaultRtmpIngestionEndpoint = config.rtmpIngestionEndpoint;
+			}
+		}
+		if (rtmpIngestionBaseUrl == "" && rtmpIngestionEndpoint == "") {
+			rtmpIngestionBaseUrl = defaultRtmpIngestionBaseUrl;
+			rtmpIngestionEndpoint = defaultRtmpIngestionEndpoint;
+		}
+		
         sink = StreamSink(
             //url = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}",
-            url = "${streamTargetConfig.rtmpIngestionBaseUrl}${streamTargetConfig.rtmpIngestionEndpoint}/${streamingParams.youTubeStreamKey}",
+            url = "${rtmpIngestionBaseUrl}${rtmpIngestionEndpoint}/${streamingParams.youTubeStreamKey}",
             streamingMaxBitrate = STREAMING_MAX_BITRATE,
             streamingBufSize = 2 * STREAMING_MAX_BITRATE
         )

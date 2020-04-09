@@ -94,6 +94,8 @@ data class XmppEnvironmentConfig(
 )
 
 data class StreamTargetConfig(
+    @JsonProperty("call_name")
+    val callName: String = "default",
     @JsonProperty("rtmp_ingestion_base_url")
     val rtmpIngestionBaseUrl: String = "rtmp://a.rtmp.youtube.com",
     @JsonProperty("rtmp_ingestion_endpoint")
@@ -124,6 +126,6 @@ data class JibriConfig(
     val xmppEnvironments: List<XmppEnvironmentConfig>,
 	
     @JsonProperty("stream_target_config")
-    val streamTargetConfig: StreamTargetConfig
+    val streamTargetConfigs: List<StreamTargetConfig>
 	
 )

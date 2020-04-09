@@ -81,7 +81,7 @@ class StreamingJibriService(
 		var rtmpIngestionEndpoint = "";
 		var defaultRtmpIngestionBaseUrl = "";
 		var defaultRtmpIngestionEndpoint = "";
-		for (config in xmppConfigs) {
+		for (config in streamTargetConfigs) {
 			if ( config.callName == callname ) {
 				rtmpIngestionBaseUrl = config.rtmpIngestionBaseUrl;
 				rtmpIngestionEndpoint = config.rtmpIngestionEndpoint;

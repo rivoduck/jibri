@@ -94,10 +94,14 @@ class StreamingJibriService(
             rtmpIngestionBaseUrl = defaultRtmpIngestionBaseUrl
             rtmpIngestionEndpoint = defaultRtmpIngestionEndpoint
         }
-
+        
+        var rtmpTargetUrl = "${rtmpIngestionBaseUrl}$rtmpIngestionEndpoint/${streamingParams.youTubeStreamKey}"
+        if (rtmpIngestionBaseUrl == "" && rtmpIngestionEndpoint == "") {
+            rtmpTargetUrl = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}"
+        }
         sink = StreamSink(
             //url = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}",
-            url = "${rtmpIngestionBaseUrl}$rtmpIngestionEndpoint/${streamingParams.youTubeStreamKey}",
+            url = rtmpTargetUrl,
             streamingMaxBitrate = STREAMING_MAX_BITRATE,
             streamingBufSize = 2 * STREAMING_MAX_BITRATE
         )

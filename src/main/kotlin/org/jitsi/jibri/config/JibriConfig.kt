@@ -97,9 +97,9 @@ data class StreamTargetConfig(
     @JsonProperty("call_name")
     val callName: String = "default",
     @JsonProperty("rtmp_ingestion_base_url")
-    val rtmpIngestionBaseUrl: String = "rtmp://a.rtmp.youtube.com",
+    val rtmpIngestionBaseUrl: String = "",
     @JsonProperty("rtmp_ingestion_endpoint")
-    val rtmpIngestionEndpoint: String = "/live2"
+    val rtmpIngestionEndpoint: String = ""
 )
 
 data class JibriConfig(

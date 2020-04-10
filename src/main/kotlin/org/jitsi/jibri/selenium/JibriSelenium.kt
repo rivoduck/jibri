@@ -145,7 +145,7 @@ class JibriSelenium(
                 "--autoplay-policy=no-user-gesture-required"
         )
         chromeOptions.setExperimentalOption("w3c", false)
-        chromeOptions.setExperimentalOption("excludeSwitches", "enable-automation")
+        chromeOptions.setExperimentalOption("excludeSwitches", listOf("enable-automation"))
         chromeOptions.addArguments(jibriSeleniumOptions.extraChromeCommandLineFlags)
         val chromeDriverService = ChromeDriverService.Builder().withEnvironment(
             mapOf("DISPLAY" to jibriSeleniumOptions.display)

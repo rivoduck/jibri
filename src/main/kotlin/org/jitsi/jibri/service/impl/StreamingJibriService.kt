@@ -94,7 +94,7 @@ class StreamingJibriService(
             rtmpIngestionBaseUrl = defaultRtmpIngestionBaseUrl
             rtmpIngestionEndpoint = defaultRtmpIngestionEndpoint
         }
-        
+
         var rtmpTargetUrl = "${rtmpIngestionBaseUrl}$rtmpIngestionEndpoint/${streamingParams.youTubeStreamKey}"
         if (rtmpIngestionBaseUrl == "" && rtmpIngestionEndpoint == "") {
             rtmpTargetUrl = "$YOUTUBE_URL/${streamingParams.youTubeStreamKey}"
